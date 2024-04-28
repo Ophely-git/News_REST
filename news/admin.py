@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, News
+from .models import Category, News, Comments
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -15,3 +15,11 @@ class NewsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ['title', 'text']
     ordering = ['updated', 'is_published']
+
+
+@admin.register(Comments)
+class CommentsAdmin(admin.ModelAdmin):
+    list_display = ['user', 'news', 'created']
+    list_filter = ['created']
+    ordering = ['created']
+
